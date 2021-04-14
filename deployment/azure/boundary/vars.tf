@@ -34,6 +34,10 @@ variable "target_ips" {
   default = []
 }
 
+variable "target_tags" {
+  type = map(string)
+}
+
 variable "tenant_id" {}
 
 variable "vault_name" {}

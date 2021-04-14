@@ -8,6 +8,10 @@ resource "boundary_target" "backend_servers_ssh" {
   host_set_ids = [
     boundary_host_set.backend_servers.id
   ]
+  worker_filter = <<EOF
+"/tags/region" == "${var.target_tags["region"]}" and "/tags/cloud" == "${var.target_tags["cloud"]}" and "/tags/network_id" == "${var.target_tags["network_id"]}"
+
+  EOF
 }
 
 resource "boundary_target" "backend_servers_website" {

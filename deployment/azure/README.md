@@ -20,7 +20,7 @@ This will spin up only the Azure infrastructure by targeting the Azure module. Y
 
 Once the infrastructure is finished provisioning, the output will be used to configure boundary. The configuration will create an SSH keypair and a self-signed certificate for TLS. The self-signed certificate is uploaded to the Key Vault. You will need to add the certificate to your trusted certificate authorities to move forward with the Boundary configuration. A future enhancement to the Boundary Terraform provider will allow you to skip TLS certificate validation.
 
-The first controller VM and the first worker VM are accessible via a NAT rule on the load balancer. The controller is using port 2022, and the worker is using port 2023. You will use the SSH key pair created by the Terraform configuration (`azure_vms_private_key.pem`). You should need to remote into the controller and worker nodes, but you might want to for troubleshooting.
+The first controller VM and the first worker VM are accessible via a NAT rule on the load balancer. The controller is using port 2022, and the worker is using port 2023. You will use the SSH key pair created by the Terraform configuration (`azure_vms_private_key.pem`). You shouldn't need to remote into the controller and worker nodes, but you might want to for troubleshooting.
 
 ## Verify
 - Once your AZure infra is live, you can SSH to your workers and controllers and see their configuration:
