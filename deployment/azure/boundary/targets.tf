@@ -9,7 +9,7 @@ resource "boundary_target" "backend_servers_ssh" {
     boundary_host_set.backend_servers.id
   ]
   worker_filter = <<EOF
-"/tags/region" == "${var.target_tags["region"]}" and "/tags/cloud" == "${var.target_tags["cloud"]}" and "/tags/network_id" == "${var.target_tags["network_id"]}"
+"${var.target_tags["region"]}" in "/tags/region" and "${var.target_tags["cloud"]}" in "/tags/cloud" and "${var.target_tags["network_id"]}" in "/tags/network_id"
 
   EOF
 }

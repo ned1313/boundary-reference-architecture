@@ -134,6 +134,11 @@ worker {
 	public_addr = "${public_ip}"
 	name = "demo-worker-$(hostname)"
 	description = "A default worker created for demonstration"
+  tags {
+      region = ["${region}"]
+      cloud = ["${cloud}"]
+      network_id = ["${network_id}"]
+  }
   controllers = [
 %{ for ip in formatlist("%s",controller_ips) ~}
 "${ip}",

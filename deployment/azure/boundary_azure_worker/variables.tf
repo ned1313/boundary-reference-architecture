@@ -41,6 +41,11 @@ variable "worker_image" {
   type = map(string)
 }
 
+variable "worker_vnet_tag" {
+  description = "Network ID to be used for the network_id tag"
+  type = string
+}
+
 variable "public_key" {
   description = "Public key value to use for worker SSH"
   type = string

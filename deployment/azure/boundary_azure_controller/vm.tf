@@ -127,7 +127,7 @@ resource "azurerm_linux_virtual_machine" "controller" {
       db_name          = local.pg_name
       db_endpoint      = azurerm_postgresql_server.boundary.fqdn
       region = var.location
-      cloud = "Azure"
+      cloud = "azure"
       network_id = module.vnet.vnet_id
     })
   )

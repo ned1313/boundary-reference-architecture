@@ -83,7 +83,7 @@ resource "azurerm_linux_virtual_machine" "worker" {
 
   custom_data = base64encode(
     templatefile("${path.module}/boundary.tmpl", {
-      vault_name       = local.vault_name
+      vault_name       = var.vault_name
       type             = "worker"
       name             = "boundary"
       boundary_version = var.boundary_version
@@ -96,7 +96,7 @@ resource "azurerm_linux_virtual_machine" "worker" {
       db_endpoint      = "none"
       region = var.location
       cloud = "Azure"
-      network_id = var.vnet_id
+      network_id = var.worker_vnet_tag
     })
   )
 

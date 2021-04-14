@@ -33,6 +33,10 @@ output "worker_vnet_id" {
   value = module.vnet.vnet_id
 }
 
+output "worker_vnet_tag" {
+  value = "${data.azurerm_client_config.current.subscription_id} ${azurerm_resource_group.boundary.name}"
+}
+
 output "target_subnet_id" {
   value = module.vnet.vnet_subnets[2]
 }

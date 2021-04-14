@@ -44,6 +44,14 @@ resource "azurerm_lb_probe" "controller_9200" {
   port                = 9200
 }
 
+# All health probe for controller nodes
+resource "azurerm_lb_probe" "controller_9201" {
+  resource_group_name = azurerm_resource_group.boundary.name
+  loadbalancer_id     = azurerm_lb.boundary.id
+  name                = "port-9201"
+  port                = 9201
+}
+
 # Add LB rule for the controllers
 resource "azurerm_lb_rule" "controller" {
   resource_group_name            = azurerm_resource_group.boundary.name
@@ -54,6 +62,18 @@ resource "azurerm_lb_rule" "controller" {
   backend_port                   = 9200
   frontend_ip_configuration_name = "PublicIPAddress"
   probe_id                       = azurerm_lb_probe.controller_9200.id
+  backend_address_pool_id        = azurerm_lb_backend_address_pool.pools.id
+}
+
+resource "azurerm_lb_rule" "controller" {
+  resource_group_name            = azurerm_resource_group.boundary.name
+  loadbalancer_id                = azurerm_lb.boundary.id
+  name                           = "Controller-Worker"
+  protocol                       = "Tcp"
+  frontend_port                  = 9201
+  backend_port                   = 9201
+  frontend_ip_configuration_name = "PublicIPAddress"
+  probe_id                       = azurerm_lb_probe.controller_9201.id
   backend_address_pool_id        = azurerm_lb_backend_address_pool.pools.id
 }
 
