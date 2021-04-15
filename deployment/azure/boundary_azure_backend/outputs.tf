@@ -4,8 +4,8 @@ output "target_ips" {
 
 output "target_tags" {
   value = {
-    cloud = "Azure"
+    cloud = "azure"
     region = var.location
-    network_id = replace(var.subnet_id, "/\\/subnets\\/.*/","")
+    network_id = "${split("/",var.subnet_id)[2]} ${split("/",var.subnet_id)[4]}"
   }
 }

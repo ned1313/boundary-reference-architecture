@@ -95,7 +95,7 @@ resource "azurerm_linux_virtual_machine" "worker" {
       db_name          = "none"
       db_endpoint      = "none"
       region = var.location
-      cloud = "Azure"
+      cloud = "azure"
       network_id = var.worker_vnet_tag
     })
   )
